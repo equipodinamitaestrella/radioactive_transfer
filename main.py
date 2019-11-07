@@ -4,6 +4,8 @@ import math
 from astropy.modeling.blackbody import blackbody_lambda
 from tqdm import tqdm
 from scipy.interpolate import interp1d
+import matplotlib
+import matplotlib.pyplot as plt
 
 c=3e10 #cm/s
 kB= 1.38e-16 #[ergK-1]
@@ -57,19 +59,30 @@ def tau(dx,x,wl):
 def rayleigh(I,wl):
     return I*pow(wl,4)/(2.0*c*kB)
 
-N = 6.96e4 #quantity of points
+N = 6.96e2 #quantity of points
 I0 = 0.0 #[erg/cm2 sec cm ster]
-nu = 1e8 #Hz
-dx = 1e1   #[km]
+nu = 2e9 #Hz
+dx = 1e3   #[km]
 wl = c/nu #Amstrongs
 
 layers = range(1,int(N+1))
 
 I = I0
 
+X = []
+Y = []
 
 for i in tqdm(layers):
     x = float(i)*dx
     I = I*math.exp(-tau(dx,x,wl)) + S(x,wl)*(1-math.exp(-tau(dx,x,wl)))
+    X.append(x)
+    Y.append(I.value)
     pass
+
 print("%e"%rayleigh(I.value,wl))
+
+fig, ax = plt.subplots()
+ax.plot(X, Y)
+ax.set_xscale("log")
+ax.set_yscale("log")
+plt.show()
