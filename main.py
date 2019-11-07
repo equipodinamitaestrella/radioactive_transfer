@@ -1,16 +1,24 @@
-#!/usr/bin/env python3
 
 
 import math
 from astropy.modeling.blackbody import blackbody_lambda
 from tqdm import tqdm
+from scipy.interpolate import interp1d
 
 c=3e10 #cm/s
 kB= 1.38e-16 #[ergK-1]
 
 # Temperature model [K]
 def T(x):
-    return 1e6
+    with open("T.dat", "r") as f:
+        T_dat = f.readlines()
+
+    x = []
+    Tr = []
+    for data in T_dat:
+        a, b = data.split()
+        x.append(float(a))
+        Tr.append(float(b))
 
 # Density model [cm-3]
 def n(x):
