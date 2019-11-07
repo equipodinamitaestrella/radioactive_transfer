@@ -13,12 +13,15 @@ def T(x):
     with open("T.dat", "r") as f:
         T_dat = f.readlines()
 
-    x = []
+    z = []
     Tr = []
     for data in T_dat:
         a, b = data.split()
-        x.append(float(a))
+        z.append(float(a))
         Tr.append(float(b))
+
+    f = interp1d(z, Tr)
+    return f(x)
 
 # Density model [cm-3]
 def n(x):
