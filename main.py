@@ -44,7 +44,7 @@ def n(x):
 
 # Source function [erg/cm2 sec cm ster]
 def S(x,wl):
-    return blackbody_lambda(wl, T(x))* 1e8
+    return blackbody_lambda(wl * 1e8, T(x))* 1e8
 
 #opacity [cm-1]
 def k(x,wl):
@@ -61,7 +61,7 @@ def rayleigh(I,wl):
 
 N = 6.96e2 #quantity of points
 I0 = 0.0 #[erg/cm2 sec cm ster]
-nu = 2e9 #Hz
+nu = 1e8 #Hz
 dx = 1e3   #[km]
 wl = c/nu #Amstrongs
 
@@ -76,7 +76,7 @@ for i in tqdm(layers):
     x = float(i)*dx
     I = I*math.exp(-tau(dx,x,wl)) + S(x,wl)*(1-math.exp(-tau(dx,x,wl)))
     X.append(x)
-    Y.append(I.value)
+    Y.append(rayleigh(I.value, wl))
     pass
 
 print("%e"%rayleigh(I.value,wl))
