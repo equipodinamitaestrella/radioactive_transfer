@@ -28,6 +28,9 @@ import matplotlib.pyplot as plt
 c=3e10 #cm/s
 kB= 1.38e-16 #[ergK-1]
 
+# num_particulas * coeficiente de absorcion para obtener opacidad
+# num_particulas = densidad / volumen
+
 # Temperature model [K]
 def T(x):
     with open("T.dat", "r") as f:
