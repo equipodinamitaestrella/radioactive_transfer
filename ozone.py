@@ -33,6 +33,22 @@ kB= 1.38e-16 #[ergK-1]
 # densidad = num_particulas / volumen -> buscar densidad en estas unidades de n/cm^3, no g/cm^3
 # En n.dat, por ejemplo, tenemos la densidad en particulas por cm^3 que hay en la corona de Sol
 
+
+# La luz ultravioleta tiene en promedio una longitud de onda de 200nm, lo cual se traduce a 2000 angstroms
+# Pero mas generalmente, hablamos de un rango de 100 a 4000 angstroms
+# Afortunadamente, el rango de 2000 a 3000 angstroms esta presente en el grafico encontrado del coeficiente de absorcion para el ozono
+
+# Investigar utilidad:
+# https://gist.github.com/jgomezdans/5443793
+# https://www.arm.gov/publications/tech_reports/doe-sc-arm-tr-129.pdf
+# Aunque las longitudes de onda presentes aqui son mayores a las de la luz ultravioleta
+
+# Investigar como obtener numero de particulas para estimacion de la opacidad
+# Si se trabajara una sola "columna" de aire que definira nuestro numero de particulas (investigar medida atm-cm y unidad Dobsson)
+# O si se trabajaran varias capas o segmentos divididos de cierto volumen para de ellos definir el numero de particulas en cada uno (tendria que trabajarse lo de interpolacion n(x)?)
+
+# Se tiene que sustituir la funcion k de opacidad a solo ser una constante definida por la frecuencia o longitud de onda estudiada?
+
 # Temperature model [K]
 def T(x):
     with open("T.dat", "r") as f:
