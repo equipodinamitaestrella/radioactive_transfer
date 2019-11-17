@@ -94,7 +94,7 @@ def n(x):
 
 # Source function [erg/cm2 sec cm ster]
 def S(x,wl):
-    return blackbody_lambda(wl * 1e8, T(x))* 1e8
+    return blackbody_lambda(wl, T(x))* 1e8 # Para pasar de cm a angstroms en el denominador
 
 #opacity [cm-1]
 def k(x,wl):
