@@ -1,0 +1,5 @@
+#We begin at the stratosphere and reach the surface 50km down, with stratopause, tropopause and surface temperatures
+#x[km]  t[k]
+0.0 270
+33  193.15
+50  287.15  
