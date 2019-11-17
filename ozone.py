@@ -119,21 +119,28 @@ def rayleigh(I,wl):
 
 # https://ozonewatch.gsfc.nasa.gov/facts/dobson_SH.html
 # Segun este recurso, tenemos las siguientes medidas interantes a comparar
-dobson_average = 300 # El promedio global de ozono
+# El promedio global de ozono es de 300 Dobson
+dobson_average = 1000 # Pruebas
 atm_cm_average =  dobson_average/1000.0
 
-dobson_hole = 100 # El promedio en el hoyo de ozono
+# El promedio en el hoyo de ozono es de 100 Dobson
+dobson_hole = 5 # Pruebas
 atm_cm_hole = dobson_hole/1000.0
+
+# Se verifico que, efectivamente, el agujero de ozono aborbe menos intensidad, no logrando reducir tan efectivamente toda la intensidad. Sin embargo, no son pruebas realistas
+
+# Pero por alguna razon la intensidad vuelve a aumentar conforme aproximacion a la superficie
 
 absortion_coeff = 6.25 # /cm base 10 para longitud de onda de 210nm
 
 wl_ang = float(2100)
-N = 6.96e2 #quantity of points
-I0 = 0 #[erg/cm2 sec cm ster]
+N = float(6.96e2) #quantity of points
+I0 = 0.0 #[erg/cm2 sec cm ster]
 #nu = 1e8 # Hz
-dx = 0.05   #[km]
+#dx = 0.05   #[km]
 #wl = c/nu #Amstrongs
-
+tot_distance = 50.0 #[km]
+dx = tot_distance/N
 layers = range(1,int(N+1))
 
 I_average = I0
