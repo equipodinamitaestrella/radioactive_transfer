@@ -49,7 +49,7 @@ kB= 1.38e-16 #[ergK-1]
 # O si se trabajaran varias capas o segmentos divididos de cierto volumen para de ellos definir el numero de particulas en cada uno (tendria que trabajarse lo de interpolacion n(x)?)
 
 # Se tiene que sustituir la funcion de profundidad optica por una constante de opacidad determinada por atm-cm * coeficiente_de_absorcion (en 1/cm)
-# 1 Dobson = 1000 atm-cm
+# 1 atm-cm = 1000 Dobson
 # atm-cm se refiere al grosor en cm que tendria toda una columna de ozono si se trajera a la superficie
 
 # Tras indagacion, se descubrio que los datos experimentales para el coeficiente de absorcion del ozono en https://www.arm.gov/publications/tech_reports/doe-sc-arm-tr-129.pdf y en https://www.osapublishing.org/josa/abstract.cfm?uri=josa-43-10-870 son bastante parecidos. Ambos usaron la ley de Beer Lambert para el calculo del coeficiente de aborcion, solo que en el primero se uso una base e natural en la ecuacion por usar la profundidad optica y en el segundo se uso una base 10 por usar la aborbancia.
@@ -127,7 +127,7 @@ atm_cm_hole = dobson_hole/1000.0
 
 absortion_coeff = 6.25 # /cm base 10 para longitud de onda de 210nm
 
-wl_ang = 2100
+wl_ang = float(2100)
 N = 6.96e2 #quantity of points
 I0 = 0 #[erg/cm2 sec cm ster]
 #nu = 1e8 # Hz
