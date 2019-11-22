@@ -17,6 +17,10 @@ One atom of chlorine can destroy more than 100,000 ozone molecules, according to
 
 Molina and Rowland’s work received striking validation in 1985, when a team of English scientists found a hole in the ozone layer over Antarctica that was later linked to CFCs. The "hole" is actually an area of the stratosphere with extremely low concentrations of ozone that reoccurs every year at the beginning of the Southern Hemisphere spring (August to October). Spring brings sunlight, which releases chlorine into the stratospheric clouds. <br>
 
+### The Dobson Unit
+
+The Dobson Unit is the most common unit for measuring ozone concentration. One Dobson Unit is the number of molecules of ozone that would be required to create a layer of pure ozone 0.01 millimeters thick at a temperature of 0 degrees Celsius and a pressure of 1 atmosphere (the air pressure at the surface of the Earth). Expressed another way, a column of air with an ozone concentration of 1 Dobson Unit would contain about 2.69x1016ozone molecules for every square centimeter of area at the base of the column. Over the Earth’s surface, the ozone layer’s average thickness is about 300 Dobson Units or a layer that is 3 millimeters thick.
+
 ### Ozone Layer and the Radiative Transfer Equation
 
 ## Objectives
@@ -31,7 +35,7 @@ Molina and Rowland’s work received striking validation in 1985, when a team of
 
 ## Conclusions
 
-# Bibliography
+## Bibliography
 https://ozonewatch.gsfc.nasa.gov/ <br>
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4427716/ Ozone density<br>
 https://www.spiedigitallibrary.org/conference-proceedings-of-spie/10466/104660C/Simulation-of-atmospheric-radiative-transfer-using-different-ozone-absorption-cross/10.1117/12.2288091.full?SSO=1 <br>
