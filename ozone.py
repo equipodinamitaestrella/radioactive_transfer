@@ -1,5 +1,4 @@
 """
-main.py solve the n-body problem using newton
 Copyright (C) 2019 Jorge Antonio Camarena Pliego (camarenapliego@gmail.com)
 Keshava Tonathiu Sanchez Barbosa (keshava.t.s.b@gmail.com)
 Stephany Dzoara Vargas Mier (stephanydvm@comunidad.unam.mx)
@@ -119,28 +118,28 @@ def rayleigh(I,wl):
 
 # https://ozonewatch.gsfc.nasa.gov/facts/dobson_SH.html
 # Segun este recurso, tenemos las siguientes medidas interantes a comparar
-# El promedio global de ozono es de 300 Dobson
-dobson_average = 1000 # Pruebas
+# El promedio global de concentración de ozono es de 300 Dobson
+dobson_average = 300 # [Dobson]
 atm_cm_average =  dobson_average/1000.0
 
 # El promedio en el hoyo de ozono es de 100 Dobson
-dobson_hole = 5 # Pruebas
+dobson_hole = 100 # [Dobson]
 atm_cm_hole = dobson_hole/1000.0
 
 # Se verifico que, efectivamente, el agujero de ozono aborbe menos intensidad, no logrando reducir tan efectivamente toda la intensidad. Sin embargo, no son pruebas realistas
 
 # Pero por alguna razon la intensidad vuelve a aumentar conforme aproximacion a la superficie
 
-absortion_coeff = 6.25 # /cm base 10 para longitud de onda de 210nm
+absortion_coeff = 6.25 # [1/cm=Hz] base 10 para longitud de onda de 210nm
 
-wl_ang = float(2100)
+wl_ang = float(2100) #wl_uv->[Angstroms] 
 N = float(6.96e2) #quantity of points
 I0 = 0.0 #[erg/cm2 sec cm ster]
-#nu = 1e8 # Hz
+#nu = 1e8 # freq [Hz]
 #dx = 0.05   #[km]
-#wl = c/nu #Amstrongs
+#wl = c/nu #[Angstroms]
 tot_distance = 50.0 #[km]
-dx = tot_distance/N
+dx = tot_distance/N #[km]
 layers = range(1,int(N+1))
 
 I_average = I0
