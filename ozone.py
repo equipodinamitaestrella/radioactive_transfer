@@ -93,7 +93,7 @@ def n(x):
 
 # Source function [erg/cm2 sec cm ster]
 def S(x,wl):
-    return blackbody_lambda(wl, T(x))* 1e8 # Para pasar de cm a angstroms en el denominador
+    return blackbody_lambda(wl, 273.15)* 1e8 # Para pasar de cm a angstroms en el denominador
 
 #opacity [cm-1]
 def k(x,wl):
@@ -107,7 +107,9 @@ def k(x,wl):
 # Si queremos calcular la profundidad optica, tendremos que dividir por log10(e) para el cambio de base y despues multiplicar por la cantidad de atm-cm presentes en una columna de atmosfera de interes
 def tau(absortion_coeff, atm_cm, base='10'):
     if base=='10':
+        #return 1
         return absortion_coeff/math.log10(math.e) * atm_cm
+        #return absortion_coeff * atm_cm * math.log(10) # Otra forma de calcular tau que parece ser equivalente tras haber comparado experimentalmente
     
     elif base=='e':
         return absortion_coeff * atm_cm
@@ -138,35 +140,40 @@ I0 = 0.0 #[erg/cm2 sec cm ster]
 #nu = 1e8 # freq [Hz]
 #dx = 0.05   #[km]
 #wl = c/nu #[Angstroms]
-tot_distance = 50.0 #[km]
-dx = tot_distance/N #[km]
-layers = range(1,int(N+1))
+tot_distance_average = atm_cm_average/100000.0 #[km]
+tot_distance_hole = atm_cm_hole/100000.0
 
-I_average = I0
-I_hole = I0
+def RTE(N, absortion_coeff, tot_distance, atm_cm, wl_ang, label, I0 = 0.0):
+    #tot_distance = atm_cm/100000.0
+    #tot_distance = 50
+    dx = tot_distance/N #[km]
+    layers = range(1,int(N+1))
 
-X = []
-Y_average = []
+    I = I0
 
-Y_hole = []
+    X = []
+    Y = []
 
-for i in tqdm(layers):
-    x = float(i)*dx
-    X.append(x)
+    for i in tqdm(layers):
+        x = float(i)*dx
+        X.append(x)
     
-    I_average = I_average*math.exp(-tau(absortion_coeff, atm_cm_average)) + S(x,wl_ang)*(1-math.exp(-tau(absortion_coeff, atm_cm_average)))
-    Y_average.append(rayleigh(I_average.value, wl_ang/1e8)) #Transformar de angstroms a cm
+        I = I*math.exp(-tau(absortion_coeff, atm_cm)) + S(x,wl_ang)*(1-math.exp(-tau(absortion_coeff, atm_cm)))
+        Y.append(rayleigh(I.value, wl_ang/1e8)) #Transformar de angstroms a cm
     
-    I_hole = I_hole*math.exp(-tau(absortion_coeff, atm_cm_hole)) + S(x,wl_ang)*(1-math.exp(-tau(absortion_coeff, atm_cm_hole)))
-    Y_hole.append(rayleigh(I_hole.value, wl_ang/1e8))
-    
-    pass
+        pass
+
+    ax.plot(X, Y, label=label)
+
+
 
 #print("%e"%rayleigh(I.value,wl_ang))
 
 fig, ax = plt.subplots()
-ax.plot(X, Y_average, label='average')
-ax.plot(X, Y_hole, label='hole')
+RTE(N, absortion_coeff, 50.0, atm_cm_average, wl_ang, 'average', I0)
+RTE(N, absortion_coeff, 50.0, atm_cm_hole, wl_ang, 'hole', I0)
+#ax.plot(X, Y_average, label='average')
+#ax.plot(X, Y_hole, label='hole')
 ax.legend()
 ax.set_xscale("log")
 ax.set_yscale("log")
