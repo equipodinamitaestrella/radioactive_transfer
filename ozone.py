@@ -24,8 +24,9 @@ from scipy.interpolate import interp1d
 import matplotlib
 import matplotlib.pyplot as plt
 
-c=3e10 #cm/s
-kB= 1.38e-16 #[ergK-1]
+c=2.9979e10 #cm/s
+kB= 1.38064e-16 #[ergK-1]
+h = 6.626068e-27
 
 # num_particulas * coeficiente de absorcion para obtener opacidad
 # num_particulas = densidad / volumen
@@ -117,11 +118,15 @@ def tau(absortion_coeff, atm_cm, base='10'):
 def rayleigh(I,wl):
     return I*pow(wl,4)/(2.0*c*kB)
 
+def wien(I,wl):
+    #freq = c/wl
+    return (h*c)/((math.log((2.0*h*c**2.0)/(I*wl**5.0)))*kB*wl)
+
 
 # https://ozonewatch.gsfc.nasa.gov/facts/dobson_SH.html
 # Segun este recurso, tenemos las siguientes medidas interantes a comparar
 # El promedio global de concentración de ozono es de 300 Dobson
-dobson_average = 300 # [Dobson]
+dobson_average = 300# [Dobson]
 atm_cm_average =  dobson_average/1000.0
 
 # El promedio en el hoyo de ozono es de 100 Dobson
@@ -157,10 +162,12 @@ def RTE(N, absortion_coeff, tot_distance, atm_cm, wl_ang, label, I0 = 0.0):
     for i in tqdm(layers):
         x = float(i)*dx
         X.append(x)
-    
+        #print(S(x, wl_ang))
         I = I*math.exp(-tau(absortion_coeff, atm_cm)) + S(x,wl_ang)*(1-math.exp(-tau(absortion_coeff, atm_cm)))
-        Y.append(rayleigh(I.value, wl_ang/1e8)) #Transformar de angstroms a cm
-    
+        #Y.append(rayleigh(I.value, wl_ang/1e8)) #Transformar de angstroms a cm
+        Y.append(wien(I.value, wl_ang/1e8))
+        print(wien(I.value, wl_ang/1e8))
+
         pass
 
     ax.plot(X, Y, label=label)
