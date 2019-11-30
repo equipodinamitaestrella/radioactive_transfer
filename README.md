@@ -2,8 +2,11 @@
 
 ## Summary
 
-## Introduction
 Ozone (O<sub>3</sub>) is a highly reactive gas whose molecules are comprised of three oxygen atoms. Its concentration in the atmosphere naturally fluctuates depending on seasons and latitudes, but it generally was stable when global measurements began in 1957. Groundbreaking research in the 1970s and 1980s revealed signs of trouble.<br>
+
+This project uses the radiative transfer equation to measure the thermal emission of a healthy section of the Ozone Layer and the Ozone Layer Hole so we can compare them and reach some conclusions. In the following sections you will find out a brief and concise explanation of what the Radiation Transfer is and some other concepts you need to know to understand the problem and the way to solve it.
+
+## Introduction
 
 Ozone absorbs ultraviolet (UV) radiation from the sun (particularly harmful UVB-type rays,) in a layer of the atmosphere called the stratosphere, the ozone layer is a sunscreen, shielding the planet from potentially harmful ultraviolet radiation. Exposure to UVB radiation is linked with increased risk of skin cancer and cataracts, as well as damage to plants and marine ecosystems. Atmospheric ozone is sometimes labeled as the "good" ozone, because of its protective role, and shouldn't be confused with tropospheric, or ground-level, "bad" ozone, a key component of air pollution that is linked with respiratory disease.<br>
 
@@ -54,9 +57,9 @@ In the limit of low frequencies (i.e. long wavelengths), Planck's law tends to t
 
 ## Objectives
 
-1) Understand the _Radiative Transfer Equation_
-2) Use the RTE and the Wien approximation to observe Ozone's thermal emission.
-3) Compare the Ozone Layer Hole's emission vs a healthy section of the Ozone Layer
+1) Understand the _Radiative Transfer Equation_.
+2) Use the _RTE_ and the _Wien approximation_ to describe Ozone's spectrum of thermal radiation.
+3) Compare the Ozone Layer Hole's emission vs emission of a healthy section of the Ozone Layer.
 
 ## Methodology
 
@@ -64,14 +67,15 @@ For the reproducibility of our results, please consider the following: <br>
 * Our code is based on the code we developed in _Modeling and simulation_ class at ENES UNIDAD MORELIA, UNAM. Its main file is included in this repository as _main.py_. 
 * The main file of _Ozone's Radiative Transfer_ is named _ozone.py_ .
 * Since it was difficult to find measurements that would fit the _main.py_ code, we had to do several changes to it such as: 
-* Units, we introduce the use of the _Dobson unit_ and _atm-cm_.
-* The way to calculate the optical depth.
-* We made the temperature constant in the source function.
-* Got rid of some functions implemente before.
+&nbsp;&nbsp;&nbsp; * Units, we introduce the use of the _Dobson unit_ and _atm-cm_. <br>
+&nbsp;&nbsp;&nbsp; * The way to calculate the optical depth. <br>
+&nbsp;&nbsp;&nbsp; * We made the temperature constant in the source function. <br>
+&nbsp;&nbsp;&nbsp; * Got rid of some functions implemente before. <br>
 
 ### Initial Conditions 
-c=2.9979e10 [cm/s] <br>
-kB= 1.38064e-16 [ergK-1] <br>
+
+c = 2.9979e10 [cm/s] <br>
+kB = 1.38064e-16 [ergK-1] <br>
 h = 6.626068e-27 Planck's constant <br>
 
 absortion_coeff = 6.25 [1/cm] <br>
@@ -82,6 +86,8 @@ dobson_hole = 100 [Dobson] <br>
 wl_ang = float(2100) [Angstroms] <br>
 N = float(6.96e2) quantity of points <br>
 I0 = 0.0 [erg/cm2 sec cm ster] <br>
+tot_distance = 50 [km]<br>
+T = 273.15 [K] <br>
 
 ### Execution
 
@@ -94,19 +100,40 @@ bash testing.sh
 With the aforementioned initial conditions, we got the following graph: <br>
 
 ![pictures/Results.png](pictures/Results.png)<br>
+
 ## Conclusions
 
+1) We can observe that the Ozone Layer in the Hole area has a lower emission, with low temperatures even close to the Earth's surface, while the healthy area of the Ozone Layer seems to keep a stable rate of temperatures.
+2) Even though they start at different rates, around 3x10⁻¹ km above the surface both curves converge in the absolute zero, 273.15 K. And then it continues to infinity. We think that we could have reached this phenomenon called **the ultraviolet catastrophe or Rayleigh–Jeans catastrophe**. This typically occurs by calculating the total amount of radiant energy (i.e., the sum of emissions in all frequency ranges), it can be shown that a blackbody in this case would release an infinite amount of energy, which is in contradiction with the law of conservation of energy.
+
 ## Bibliography
-https://ozonewatch.gsfc.nasa.gov/ <br>
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4427716/ Ozone density<br>
-https://www.spiedigitallibrary.org/conference-proceedings-of-spie/10466/104660C/Simulation-of-atmospheric-radiative-transfer-using-different-ozone-absorption-cross/10.1117/12.2288091.full?SSO=1 <br>
-https://link.springer.com/content/pdf/10.1023%2FA%3A1006036924364.pdf <br>
-http://acmg.seas.harvard.edu/people/faculty/djj/book/bookchap10.html <br>
-https://www.sciencedirect.com/science/article/pii/S0022285216301382?via%3Dihub revisar citas <br>
-https://www.nasa.gov/feature/goddard/2019/2019-ozone-hole-is-the-smallest-on-record-since-its-discovery <br>
-https://www.nationalgeographic.com/environment/global-warming/ozone-depletion/#close <br>
-https://en.wikipedia.org/wiki/Planck%27s_law <br>
-https://gist.github.com/jgomezdans/5443793 <br>
-https://www.arm.gov/publications/tech_reports/doe-sc-arm-tr-129.pdf <br>
-https://www.arm.gov/publications/tech_reports/doe-sc-arm-tr-129.pdf <br>
-https://www.osapublishing.org/josa/abstract.cfm?uri=josa-43-10-870 <br>
+[1] Ozonewatch.gsfc.nasa.gov. (2019). NASA Ozone Watch: Latest status of ozone. [online] Available at: https://ozonewatch.gsfc.nasa.gov/ [Accessed 15 Nov. 2019]. <br>
+
+[2] Batakliev, T., Georgiev, V., Anachkov, M., Rakovsky, S., & Zaikov, G. E. (2014). Ozone decomposition. Interdisciplinary toxicology, 7(2), 47–59. doi:10.2478/intox-2014-0008 <br>
+
+[3] T. Yu. Chesnokova, Yu. V. Voronina, A. V. Chentsov, K. M. Firsov, and A. A. Razmolov "Simulation of atmospheric radiative transfer using different ozone absorption cross-sections in the UV spectral region", Proc. SPIE 10466, 23rd International Symposium on Atmospheric and Ocean Optics: Atmospheric Physics, 104660C (30 November 2017); https://doi.org/10.1117/12.2288091 <br>
+
+[4] Brion, J., Chakir, A., Charbonnier, J. et al. Journal of Atmospheric Chemistry (1998) 30: 291. https://doi.org/10.1023/A:1006036924364<br>
+
+[5] CHAPTER 10. STRATOSPHERIC OZONE. (n.d.). Retrieved November 15, 2019, from http://acmg.seas.harvard.edu/people/faculty/djj/book/bookchap10.html. <br>
+
+[6] Absorption cross-sections of ozone in the ultraviolet and visible spectral regions: Status report 2015, Journal of Molecular  Spectroscopy, Volume 327, 2016, Pages 105-121, ISSN 0022-2852, https://doi.org/10.1016/j.jms.2016.07.007. <br>
+
+[7] Blumberg, S. (2019, October 21). 2019 Ozone Hole is the Smallest on Record Since Its Discovery. Retrieved November 15, 2019, from https://www.nasa.gov/feature/goddard/2019/2019-ozone-hole-is-the-smallest-on-record-since-its-discovery. <br>
+
+[8] Thiessen, M. (2019, April 18). The facts about ozone depletion. Retrieved November 15, 2019, from https://www.nationalgeographic.com/environment/global-warming/ozone-depletion/#close. <br>
+
+[9] Planck's law. (2019, November 19). Retrieved November 22, 2019, from https://en.wikipedia.org/wiki/Planck's_law. <br>
+https://en.wikipedia.org/wiki/Wien_approximation <br>
+
+[10] Radiative transfer. (2019, November 19). Retrieved November 22, 2019, from https://en.wikipedia.org/wiki/Radiative_transfer. <br>
+
+[11] Table of Wavelength Versus Ozone Absorption Coefficients . (n.d.). Retrieved November 15, 2019, from https://gist.github.com/jgomezdans/5443793. <br>
+
+[12] Aerosol Optical Depth Value-Added Product. (2013). doi: DOE/SC-ARM/TR-129. URL: https://www.arm.gov/publications/tech_reports/doe-sc-arm-tr-129.pdf <br>
+
+[13] Inn, E. C. Y., & Tanaka, Y. (1953, October 1). Absorption Coefficient of Ozone in the Ultraviolet and Visible Regions. Retrieved November 28, 2019, from https://www.osapublishing.org/josa/abstract.cfm?uri=josa-43-10-870. <br>
+
+[14] Ultraviolet Catastrophe - Rayleigh-Jeans Catastrophe. (n.d.). Retrieved November 28, 2019, from https://www.nuclear-power.net/nuclear-engineering/heat-transfer/radiation-heat-transfer/ultraviolet-catastrophe-rayleigh-jeans-catastrophe/. <br>
+
+[15] Chapter 2: The blackbody spectrum and the “ultraviolet catastrophe”. Luis M. Molina .Departamento de Física Teórica, Atómica y Óptica. Quantum Physics. Retrieved November 28, 2019, from: http://metodos.fam.cie.uva.es/latex/fisica-cuantica/Clase-002.pdf
